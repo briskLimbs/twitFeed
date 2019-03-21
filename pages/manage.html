@@ -1,0 +1,82 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    
+<div class="content-wrapper bg-light">
+  <div class="col-12 grid-margin">
+    {% if message %}
+      <div class="alert alert-success">{{message}}</div>
+    {% endif %}
+
+    {% for error in _errors %}
+      <div class="alert alert-danger">{{error}}</div>
+    {% endfor %}
+    <!-- content here -->
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">TwitFeed Widget Manager</h4>
+        <div class="alert alert-info col-md-6 col-sm-12">Add {% verbatim %}{{hook('twitFeed')}}{% endverbatim %} anywhere to show widget</div>
+        <div class="alert alert-info col-md-6 col-sm-12">Set Limit to 0 to make widget scrollable</div>
+        <form class="form-sample" name="general-settings" method="post">
+          <div class="row">
+            <div class="col-md-5">
+              <h5 class="mt-5">Settings</h5>
+              <div class="form-group row">
+                <label class="col-sm-12 col-form-label">@Username</label>
+                <div class="col-sm-12">
+                  <input type="text" name="username" class="form-control" placeholder="@username" value="{{widget.username}}" />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-12 col-form-label">Placement</label>
+                <div class="col-sm-12">
+                  <select name="placement" class="form-control">
+                    <option value="custom" {% if widget.placement == 'all_sidebars_top' %}selected="selected"{% endif %}>Custom</option>
+                    <option value="all_sidebars_top" {% if widget.placement == 'all_sidebars_top' %}selected="selected"{% endif %}>All sidebars - Top</option>
+                    <option value="all_sidebars_bottom" {% if widget.placement == 'all_sidebars_bottom' %}selected="selected"{% endif %}>All sidebars - Bottom</option>
+                    <option value="watch_sidebar_top" {% if widget.placement == 'watch_sidebar_top' %}selected="selected"{% endif %}>Watch Sidebar - Top</option>
+                    <option value="watch_sidebar_bottom" {% if widget.placement == 'watch_sidebar_bottom' %}selected="selected"{% endif %}>Watch Sidebar - Bottom</option>
+                    <option value="browse_sidebar_top" {% if widget.placement == 'browse_sidebar_top' %}selected="selected"{% endif %}>Browse Sidebar - Top</option>
+                    <option value="browse_sidebar_bottom" {% if widget.placement == 'browse_sidebar_bottom' %}selected="selected"{% endif %}>Browse Sidebar - Bottom</option>
+                    <option value="channel_sidebar_top" {% if widget.placement == 'channel_sidebar_top' %}selected="selected"{% endif %}>Channel Sidebar - Top</option>
+                    <option value="channel_sidebar_bottom" {% if widget.placement == 'channel_sidebar_bottom' %}selected="selected"{% endif %}>Channel Sidebar - Bottom</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-12 col-md-4">
+                <label class="col-sm-12 col-md-12 col-form-label">Limit</label>
+                  <input type="text" name="maximum" class="form-control" placeholder="10" value="{{widget.maximum}}" />
+                </div>
+                <div class="col-sm-12 col-md-4">
+                <label class="col-sm-12 col-md-12 col-form-label">Width</label>
+                  <input type="text" name="width" class="form-control" placeholder="300" value="{{widget.width}}" />
+                </div>
+                <div class="col-sm-12 col-md-4">
+                <label class="col-sm-12 col-md-12 col-form-label">Height</label>
+                  <input type="text" name="height" class="form-control" placeholder="300" value="{{widget.height}}" />
+                </div>
+              </div>
+            </div>
+            <div class="col-md-7">
+              <h5 class="mt-5">Preview</h5>
+              <div class="form-group row">
+                {{hook('twitFeed')}}
+              </div>
+            </div>
+          </div>
+          <div class="float-right">
+            <button type="submit" type="button" class="btn btn-gradient-primary btn-icon-text">
+              <i class="mdi mdi-file-check btn-icon-prepend"></i>
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- content-wrapper ends -->
+        
+        
+{% endblock %}

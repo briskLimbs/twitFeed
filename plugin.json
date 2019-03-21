@@ -1,0 +1,11 @@
+{
+  "name" : "twitfeed",
+  "display_name": "TwitFeed",
+  "file": "twitFeed.php",
+  "author": "Saqib Razzaq",
+  "autor_website": "https://github.com/saqirzzq",
+  "date": "2019, 03, 21",
+  "description": "Show Twitter feed anywhere on website",
+  "version": "0.1",
+  "state": "Beta"
+}
